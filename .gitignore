@@ -1,0 +1,25 @@
+# IntelliJ
+
+.idea/
+
+*.iml
+
+# Gradle
+
+.gradle/
+
+build/
+
+# macOS
+
+.DS_Store
+
+# Android Studio
+
+local.properties
+
+captures/
+
+.externalNativeBuild/
+
+.cxx/
