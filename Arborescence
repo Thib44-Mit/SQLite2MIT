@@ -1,0 +1,15 @@
+SQLite2MIT/
+
+README.md
+
+LICENSE
+
+CHANGELOG.md
+
+API.md
+
+.gitignore
+
+src/
+
+    SQLite2MIT.java
