@@ -61,20 +61,41 @@ OpenDatabase("/storage/emulated/0/Download/Library.db")
 Returns **true** if successful.
 
 ---
-### Relative or absolute Paths
+### Database Location
 
-If the path does not begin with "/",
+#### Relative path
 
-"Library.db"
+Example
 
-the database is created inside the application's private directory. In this case the db file can't be seen by other users nor file explorater.
+```text
+Library.db
+```
 
-If the path begins with "/",
+The database is created in the application's **private internal storage**.
 
-"/storage/emulated/0/Download/Library.db"
+Characteristics:
 
-the specified absolute path is used. In this case the db file may be seen by other users and file explorater do be imported or exported
+- No Android storage permissions are required.
+- The database is private to the application.
+- Other applications normally cannot access it.
+- Most file explorers cannot browse this location.
+- To exchange the database with another application or a computer, the MIT application must explicitly implement import and/or export functions (using MIT App Inventor file blocks).
 
+---
+
+#### Absolute path
+
+Example
+
+```text
+/storage/emulated/0/Android/data/<your.package.name>/files/Library.db
+```
+
+Characteristics:
+
+- The database location is chosen by the application.
+- The database can be shared more easily with external tools, subject to Android storage restrictions.
+- Access to shared folders (for example `Download`) depends on the Android version and the permissions granted to the application.
 ---
 
 ## CloseDatabase()
