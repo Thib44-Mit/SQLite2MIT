@@ -55,7 +55,7 @@ OpenDatabase("Library.db")
 or
 
 ```text
-OpenDatabase("/storage/emulated/0/Download/Library.db")
+OpenDatabase("/storage/emulated/0/Android/data/<your.package.name>/files/Library.db")
 ```
 
 Returns **true** if successful.
