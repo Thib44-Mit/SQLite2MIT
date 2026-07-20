@@ -6,6 +6,14 @@
  Started : July 2026
 
  This extension provides direct SQLite access for MIT App Inventor.
+*************************
+  Version : 1.0.1
+
+ Author : Thibault de Chanv...
+ Started : July 2026
+
+ add isopen() test on query
+
 */
 
 package com.thib44.sqlite2mit;
@@ -62,6 +70,9 @@ public class Database {
 
             db = SQLiteDatabase.openOrCreateDatabase(file, null);
 
+        log("Package      = " + context.getPackageName());
+        log("FilesDir     = " + context.getFilesDir());
+        log("CacheDir     = " + context.getCacheDir());
 
 //            databasePath = file.getAbsolutePath();
             databasePath = db.getPath();
@@ -192,6 +203,10 @@ public class Database {
         }
     }
     public List<List<Object>> executeQuery(String sql){
+    if (!isOpen()) {
+        lastError = "Database is not open";
+        return null;
+    }    
     try {
         Cursor cursor = db.rawQuery(sql, null);
         List<List<Object>> result = new ArrayList<>();
