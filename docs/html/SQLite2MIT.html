@@ -1,1 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>SQLite2MIT Extension</title>
+	<meta name="generator" content="LibreOffice 25.2.2.2 (MacOSX)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2026-07-22T18:06:08.498487000"/>
+	<meta name="" content=""/>
+	<style type="text/css">
+		td p { text-align: left; line-height: 150%; font-family: "Arial", "Helvetica", sans-serif }
+		h1 { color: #1565c0; line-height: 150% }
+		h1.cjk { font-family: "Arial", "Helvetica", sans-serif }
+		h1.ctl { font-family: "Arial", "Helvetica", sans-serif }
+		p { line-height: 150%; font-family: "Arial", "Helvetica", sans-serif }
+		h2 { border-top: none; border-bottom: 1px solid #cccccc; border-left: none; border-right: none; padding-top: 0cm; padding-bottom: 0.05cm; padding-left: 0cm; padding-right: 0cm; margin-top: 0.93cm; line-height: 150% }
+		th p { line-height: 150%; text-align: left; font-family: "Arial", "Helvetica", sans-serif }
+		h3 { line-height: 150% }
+		h4 { line-height: 150% }
+		pre { line-height: 150% }
+		code { background: #eeeeee }
+	</style>
+</head>
+<body lang="fr-FR" dir="ltr" style="border: none; padding: 0cm"><h1 class="western">
+SQLite2MIT</h1>
+<p>SQLite2MIT is a non-visible MIT App Inventor extension providing
+direct access to the native SQLite library included with Android. 
+</p>
+<p>The extension returns query results directly as MIT App Inventor
+lists (YailList), avoiding CSV or JSON conversions. 
+</p>
+<hr/>
 
+<h2>Properties</h2>
+<table cellpadding="2" cellspacing="2">
+	<tr>
+		<th style="border: none; padding: 0cm"><p>Property</p>
+		</th>
+		<th style="border: none; padding: 0cm"><p>Description</p>
+		</th>
+	</tr>
+	<tr>
+		<td style="border: none; padding: 0cm"><p><b>Debug</b></p>
+		</td>
+		<td style="border: none; padding: 0cm"><p>Enable or disable debug
+			logging. 
+			</p>
+		</td>
+	</tr>
+</table>
+<hr/>
+
+<h2>Functions</h2>
+<h3>OpenDatabase(path)</h3>
+<p><img src="OpenDataBase.png" name="Image1" align="left" width="319" height="465" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<p>Opens an existing database or creates a new one. 
+</p>
+<p><b>Parameter</b></p>
+<table cellpadding="2" cellspacing="2">
+	<tr>
+		<th style="border: none; padding: 0cm"><p>Name</p>
+		</th>
+		<th style="border: none; padding: 0cm"><p>Description</p>
+		</th>
+	</tr>
+	<tr>
+		<td style="border: none; padding: 0cm"><p>path</p>
+		</td>
+		<td style="border: none; padding: 0cm"><p>Absolute or relative
+			database path. 
+			</p>
+		</td>
+	</tr>
+</table>
+<p><b>Returns</b></p>
+<p><code>true</code> if successful. 
+</p>
+<h4>Notes</h4>
+<ul>
+	<li><p style="margin-bottom: 0cm">If a database is already open, it
+	is automatically closed before to be re-opened 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">The caller does not need to call
+	CloseDatabase() explicitly before opening another database 
+	</p></li>
+	<li><p>The database is created automatically if it does not already
+	exist 
+	</p></li>
+</ul>
+<h3>DatabasePath()</h3>
+<p style="margin-bottom: 0cm">Returns the absolute path of the opened
+database. 
+</p>
+<hr/>
+
+<h3>LastError()</h3>
+<p style="margin-bottom: 0cm">Returns the last SQLite error message.
+Returns an empty string if the previous operation succeeded. 
+</p>
+<hr/>
+
+<h2>Relative and Absolute Paths</h2>
+<p><img src="DatabasePath.png" name="Image2" align="left" width="134" height="159" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<h3>Relative path</h3>
+<pre style="margin-bottom: 0.5cm">Library.db</pre><p>
+The database is stored inside the application's private storage.
+Advantages 
+</p>
+<ul>
+	<li><p style="margin-bottom: 0cm">No Android storage permission
+	required. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Private to the application. 
+	</p></li>
+	<li><p>More secure. 
+	</p></li>
+</ul>
+<p>Limitations 
+</p>
+<ul>
+	<li><p style="margin-bottom: 0cm">Not directly accessible by file
+	explorers. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Cannot normally be accessed by
+	other applications. 
+	</p></li>
+	<li><p>If database exchange is required, the MIT application must
+	implement import/export using MIT file components. 
+	</p></li>
+</ul>
+<hr/>
+
+<h3>Absolute path</h3>
+<p>Example 
+</p>
+<pre style="margin-bottom: 0.5cm">/storage/emulated/0/Android/data/&lt;package.name&gt;/files/Library.db</pre><p style="margin-bottom: 0cm">
+Allows the application to choose the database location. The actual
+accessible folders depend on Android version and granted permissions.
+</p>
+<hr/>
+
+<h3>CloseDatabase()</h3>
+<p><img src="CloseDatabase.png" name="Image3" align="left" width="128" height="160" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<p style="margin-bottom: 0cm">Closes the current database. 
+</p>
+<p style="margin-bottom: 0cm"><br/>
+
+</p>
+<hr/>
+
+<h3>ExecuteNonQuery(sql)</h3>
+<p><img src="ExecuteNonQuery.png" name="Image4" align="left" width="166" height="173" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<p>Executes SQL statements that do not return rows. Typical
+statements: 
+</p>
+<ul>
+	<li><p style="margin-bottom: 0cm">CREATE TABLE 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">CREATE INDEX 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">INSERT 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">UPDATE 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">DELETE 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">DROP TABLE 
+	</p></li>
+	<li><p>ALTER TABLE 
+	</p></li>
+</ul>
+<p style="margin-bottom: 0cm">Returns <code>true</code> if
+successful. 
+</p>
+<hr/>
+
+<h3>ExecuteScalar(sql)</h3>
+<p><img src="ExecuteScalar.png" name="Image5" align="left" width="154" height="174" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<p>Executes a query returning a single value. Example 
+</p>
+<pre>SELECT COUNT(*)
+FROM BOOK;</pre><p style="margin-bottom: 0cm">
+Returns the first column of the first row. 
+</p>
+<hr/>
+
+<h3>SQLQuery(sql)</h3>
+<p><img src="SQLQuery.png" name="Image6" align="left" width="139" height="268" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<p>Executes a SELECT statement. Returns a MIT App Inventor YailList.
+Each row is itself a YailList. Example 
+</p>
+<pre>SELECT
+    Title,
+    Author
+FROM BOOK;</pre><p>
+returns 
+</p>
+<pre>(
+   (&quot;Dune&quot; &quot;Frank Herbert&quot;)
+   (&quot;Foundation&quot; &quot;Isaac Asimov&quot;)
+)</pre>
+<hr/>
+
+<h3>Version()</h3>
+<p><img src="version.png" name="Image7" align="left" width="185" height="129" border="0">
+  <br clear="left"/>
+</img>
+<br/>
+<br/>
+
+</p>
+<p>Returns 
+</p>
+<ul>
+	<li><p style="margin-bottom: 0cm">SQLite2MIT version 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">SQLite library version 
+	</p></li>
+</ul>
+<hr/>
+
+<h3><br/>
+<br/>
+
+</h3>
+<h2>Debug Log</h2>
+<p>When Debug is enabled, SQLite2MIT writes diagnostic information
+into 
+</p>
+<pre style="margin-bottom: 0.5cm">SQLite2MIT.log</pre><p>
+Typical information: 
+</p>
+<ul>
+	<li><p style="margin-bottom: 0cm">Database opening 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Database closing 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Executed SQL statements 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Errors 
+	</p></li>
+	<li><p>Database path 
+	</p></li>
+</ul>
+<p>When using MIT AI Companion, the log file is typically stored in 
+</p>
+<pre style="margin-bottom: 0.5cm">/storage/emulated/0/Android/data/edu.mit.appinventor.aicompanion3/files/</pre>
+<hr/>
+
+<h2>Notes</h2>
+<ul>
+	<li><p style="margin-bottom: 0cm">If a database is already open, it
+	is automatically closed before to be re- 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">No external SQLite library is
+	required. 
+	</p></li>
+	<li><p style="margin-bottom: 0cm">Standard SQLite syntax is used. 
+	</p></li>
+	<li><p>The extension does not manage files, JSON or CSV conversion. 
+	</p></li>
+</ul>
+<hr/>
+
+<p>SQLite2MIT Version 1.0.0 
+</p>
+</body>
+</html>
