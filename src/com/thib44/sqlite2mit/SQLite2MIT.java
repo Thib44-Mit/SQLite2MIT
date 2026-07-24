@@ -1,11 +1,12 @@
 /*
- SQLite2MIT
- Version : 1.0.0
+ SQLite2MIT Version : 1.0.0
 
  Author : Bernard Thibault de Chanvalon
  Started : July 2026
 
  This extension provides direct SQLite access for MIT App Inventor.
+
+ Version 1.0.1 : add descritions and comments
 */
 
 package com.thib44.sqlite2mit;
@@ -48,7 +49,8 @@ import java.util.List;
         description = "SQLite interface for MIT App Inventor",
         category = ComponentCategory.EXTENSION,
         nonVisible = true,
-        iconName = "")
+        iconName = "images/SQLite2MIT.gif",
+        helpUrl = "https://thib44-mit.github.io/SQLite2MIT/index.html")
 
 @SimpleObject(external = true)
 
@@ -81,7 +83,9 @@ public class SQLite2MIT extends AndroidNonvisibleComponent {
    @DesignerProperty(
             editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
             defaultValue = "False")
-    @SimpleProperty(category = PropertyCategory.BEHAVIOR)
+
+    @SimpleProperty(description = "Enable or disable the debug log.",
+        category = PropertyCategory.BEHAVIOR)
     public void Debug(boolean value) {
         debug = value;
         database.setDebug(debug);
@@ -112,7 +116,7 @@ public class SQLite2MIT extends AndroidNonvisibleComponent {
  * @param path Absolute or relative database path.
  * @return true if successful.
  */
-    @SimpleFunction(description = "Open a SQLite database")
+    @SimpleFunction(description = "Open an existing SQLite database or create a new one if it does not exist. The path may be absolute or relative.")
     public boolean OpenDatabase(String path) {
         return database.open(path);
     }
@@ -127,7 +131,7 @@ public class SQLite2MIT extends AndroidNonvisibleComponent {
     public boolean IsOpen() {
         return database.isOpen();
     }
-    @SimpleFunction(description = "Returns the last error message")
+    @SimpleFunction(description = "Return the last SQLite error message. Returns an empty string if the previous operation succeeded.")
     public String LastError() {
         return database.getLastError();
     }
@@ -137,7 +141,7 @@ public class SQLite2MIT extends AndroidNonvisibleComponent {
         return database.executeNonQuery(sql);
     }
 
-    @SimpleFunction(description = "Execute a query returning a single value")
+    @SimpleFunction(description = "Execute a query returning a single value. The first column of the first row is returned.")
     public String ExecuteScalar(String sql) {
         return database.executeScalar(sql);
     }
@@ -147,7 +151,7 @@ public class SQLite2MIT extends AndroidNonvisibleComponent {
         return database.getDatabasePath();
     }
 
-    @SimpleFunction(description = "Execute a SELECT query and return a list of rows.")
+    @SimpleFunction(description = "Execute a SELECT statement and return the result as a MIT App Inventor YailList.")
     public YailList SQLQuery(String sql) {
         List<List<Object>> result = database.executeQuery(sql);
         if (result == null) {
@@ -164,4 +168,3 @@ public class SQLite2MIT extends AndroidNonvisibleComponent {
 
 
 }
-
